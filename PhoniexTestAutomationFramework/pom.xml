@@ -1,6 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0">
+
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>PhoniexTestAutomationFramework</groupId>
 	<artifactId>PhoniexTestAutomationFramework</artifactId>
@@ -9,8 +8,8 @@
 
 	<properties>
 
-		<maven.source.complier>11</maven.source.complier>
-		<maven.target.compiler>11</maven.target.compiler>
+		<maven.source.complier>14</maven.source.complier>
+		<maven.target.compiler>14</maven.target.compiler>
 
 	</properties>
 

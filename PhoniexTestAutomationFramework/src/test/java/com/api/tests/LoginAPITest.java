@@ -1,23 +1,28 @@
 package com.api.tests;
 
-import static io.restassured.RestAssured.*;
+import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.lessThan;
+import static org.hamcrest.Matchers.notNullValue;
 
-import static org.hamcrest.Matchers.*;
+import java.io.IOException;
 
 import org.testng.annotations.Test;
 
 import com.api.POJO.UserCredentials;
+import com.api.utils.ConfigManager;
+import com.api.utils.ConfigManager2;
 
 import io.restassured.http.ContentType;
 
 public class LoginAPITest {
 	@Test
-	public void loginAPI() {
+	public void loginAPI() throws IOException {
 		
 		UserCredentials usercredentials = new UserCredentials("iamfd","password");
 		
 		given()
-		.baseUri("http://64.227.160.186:9000/v1")
+		.baseUri(ConfigManager2.getproperty("BASE_URI"))
 		.and()
 		.contentType(ContentType.JSON)
 		.and()
