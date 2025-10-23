@@ -7,6 +7,7 @@ import static org.hamcrest.Matchers.notNullValue;
 
 import java.io.IOException;
 
+import org.hamcrest.Matchers;
 import org.testng.annotations.Test;
 
 import com.api.POJO.UserCredentials;
@@ -40,7 +41,8 @@ public class LoginAPITest {
 		.body("message",equalTo("Success"))
 		.body("data.token",notNullValue())
 		.extract()
-        .path("data.token");
+        .path("data.token")
+       ;
 		
 		
 		

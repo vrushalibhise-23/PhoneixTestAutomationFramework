@@ -17,7 +17,7 @@ public class ConfigManager2 {
 		
 	}
 	static {
-		env=System.getProperty("env");
+		env=System.getProperty("env","qa");
 		env=env.toLowerCase().trim();
 		
 		switch(env) {
