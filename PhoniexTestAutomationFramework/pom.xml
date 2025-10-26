@@ -2,7 +2,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
                              http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  
+
   <modelVersion>4.0.0</modelVersion>
   <groupId>PhoniexTestAutomationFramework</groupId>
   <artifactId>PhoniexTestAutomationFramework</artifactId>
@@ -15,14 +15,23 @@
   </properties>
 
   <dependencies>
-    <!-- Rest Assured -->
+    <!-- ✅ Rest Assured (Core) -->
     <dependency>
       <groupId>io.rest-assured</groupId>
       <artifactId>rest-assured</artifactId>
-      <version>5.5.6</version>
+      <version>5.5.0</version>
+      <scope>test</scope>
     </dependency>
 
-    <!-- Jackson for JSON -->
+    <!-- ✅ Rest Assured JSON Schema Validator -->
+    <dependency>
+      <groupId>io.rest-assured</groupId>
+      <artifactId>json-schema-validator</artifactId>
+      <version>5.5.0</version>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- ✅ Jackson for JSON -->
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-databind</artifactId>
@@ -39,7 +48,7 @@
       <version>2.17.0</version>
     </dependency>
 
-    <!-- TestNG -->
+    <!-- ✅ TestNG -->
     <dependency>
       <groupId>org.testng</groupId>
       <artifactId>testng</artifactId>
@@ -47,32 +56,39 @@
       <scope>test</scope>
     </dependency>
 
-<dependency>
-    <groupId>io.rest-assured</groupId>
-    <artifactId>json-schema-validator</artifactId>
-    <version>5.5.0</version>
-    <scope>test</scope>
-</dependency>
-    <!-- SLF4J Logger -->
+    <!-- ✅ SLF4J Logger -->
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-simple</artifactId>
       <version>2.0.12</version>
       <scope>test</scope>
     </dependency>
-   
   </dependencies>
+
   <build>
-  <plugins>
-    <plugin>
-      <groupId>org.apache.maven.plugins</groupId>
-      <artifactId>maven-compiler-plugin</artifactId>
-      <version>3.11.0</version>
-      <configuration>
-        <release>14</release>
-      </configuration>
-    </plugin>
-  </plugins>
-</build>
+    <plugins>
+      <!-- ✅ Maven Compiler Plugin -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.11.0</version>
+        <configuration>
+          <release>14</release>
+        </configuration>
+      </plugin>
+
+      <!-- ✅ Maven Surefire Plugin (for TestNG) -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.5.4</version>
+        <configuration>
+          <suiteXmlFiles>
+            <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
+          </suiteXmlFiles>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
 
 </project>

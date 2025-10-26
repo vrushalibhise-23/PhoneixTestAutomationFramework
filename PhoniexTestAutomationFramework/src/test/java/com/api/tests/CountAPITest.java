@@ -21,7 +21,7 @@ import io.restassured.http.ContentType;
 import io.restassured.module.jsv.JsonSchemaValidator;
 
 
-public class CountAPITEST {
+public class CountAPITest {
 	@Test
 	public void CountAPI() throws IOException {
 		

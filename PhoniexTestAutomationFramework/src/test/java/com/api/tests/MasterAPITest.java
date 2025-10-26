@@ -12,7 +12,7 @@ import com.api.utils.ConfigManager;
 import static io.restassured.RestAssured.*;
 import io.restassured.response.ValidatableResponse;
 
-public class MasterAPITEST {
+public class MasterAPITest {
 	@Test
 	public void MasterAPITest() throws IOException {
 		ValidatableResponse response= given()
