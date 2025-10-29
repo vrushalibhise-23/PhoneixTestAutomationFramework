@@ -5,6 +5,19 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
+  schedule:
+    - cron: "30 6 * * *"
+  workflow_dispatch:
+    inputs:
+      env:
+        description: "Environment"
+        required: true
+        type: choice
+        options:
+          - qa
+          - dev
+          - stage
+          - prod
 
 jobs:
   build:
@@ -23,7 +36,7 @@ jobs:
       - name: Build and test using Maven
         run: |
           cd PhoniexTestAutomationFramework
-          mvn clean test -DsuiteXmlFile=testng.xml -Denv=qa
+          mvn clean test -DsuiteXmlFile=testng.xml -Denv=${{ github.event.inputs.env || 'qa' }}
 
       - name: Upload Test Reports
         if: always()
@@ -34,4 +47,3 @@ jobs:
             PhoniexTestAutomationFramework/target/surefire-reports/
             PhoniexTestAutomationFramework/test-output/
           retention-days: 7
-
