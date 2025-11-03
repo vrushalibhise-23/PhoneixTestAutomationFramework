@@ -29,7 +29,6 @@ public class ConfigManager2 {
 		
 		
 		
-		
 		InputStream input =Thread.currentThread().getContextClassLoader().getSystemResourceAsStream(path);
 		
 		if(input==null) {
