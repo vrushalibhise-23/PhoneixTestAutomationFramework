@@ -1,0 +1,52 @@
+name: Run Maven Tests
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+  schedule:
+    - cron: "30 6 * * *"
+  workflow_dispatch:
+    inputs:
+      env:
+        description: "Environment"
+        required: true
+        type: choice
+        options:
+          - qa
+          - dev
+          - stage
+          - prod
+        default: qa
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: PhoniexTestAutomationFramework  # 👈 sets working dir globally
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Build and test using Maven
+        run: mvn clean test -DsuiteXmlFile=testng.xml -Denv=${{ github.event.inputs.env || 'qa' }}
+
+      - name: Upload Test Reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-reports
+          path: |
+            PhoniexTestAutomationFramework/target/surefire-reports/
+            PhoniexTestAutomationFramework/test-output/
+          retention-days: 7
