@@ -15,6 +15,7 @@ import com.api.constants.Role;
 import com.api.utils.AuthTokenProvider;
 import com.api.utils.ConfigManager;
 import com.api.utils.ConfigManager2;
+import com.api.utils.SpecUtil;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
@@ -26,16 +27,12 @@ public class CountAPITest {
 	public void CountAPI() throws IOException {
 		
 		RestAssured.given()
-		.baseUri(ConfigManager.getproperty("BASE_URI"))
-		.and()
-		.header("Authorization",AuthTokenProvider.getToken(Role.FD))
+		.spec(SpecUtil.requestSpecwithAuth(Role.FD))
 		.when()
 		.get("/dashboard/count")
 		.then()
 		.log().all()
-		.statusCode(200)
-		.body("message", Matchers.equalTo("Success"))
-		.time(Matchers.lessThan(1000L))
+		.spec(SpecUtil.responseSpecification())
 		.body("data", Matchers.notNullValue())
 		.body("data.size()", Matchers.equalTo(3))
 		.body("data.count", Matchers.everyItem(Matchers.greaterThanOrEqualTo(0)));
@@ -46,13 +43,12 @@ public class CountAPITest {
 public void CountAPI_missingAuthToken() throws IOException {
 		
 		RestAssured.given()
-		.baseUri(ConfigManager.getproperty("BASE_URI"))
-		.and()
+		.spec(SpecUtil.requestSpec())
 		//.header("Authorization",AuthTokenProvider.getToken(Role.FD))
 		.when()
 		.get("/dashboard/count")
 		.then()
 		.log().all()
-		.statusCode(401);
+		.spec(SpecUtil.responseSpecification_401());
 
 }}
