@@ -24,6 +24,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    defaults:
+      run:
+        working-directory: PhoniexTestAutomationFramework  # 👈 sets working dir globally
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -35,9 +39,7 @@ jobs:
           distribution: 'temurin'
 
       - name: Build and test using Maven
-        run: |
-          cd PhoniexTestAutomationFramework
-          mvn clean test -DsuiteXmlFile=testng.xml -Denv=${{ github.event.inputs.env || 'qa' }}
+        run: mvn clean test -DsuiteXmlFile=testng.xml -Denv=${{ github.event.inputs.env || 'qa' }}
 
       - name: Upload Test Reports
         if: always()
