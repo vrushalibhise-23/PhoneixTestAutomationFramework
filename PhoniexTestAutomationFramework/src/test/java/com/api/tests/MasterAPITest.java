@@ -8,6 +8,7 @@ import org.testng.annotations.Test;
 import com.api.constants.Role;
 import com.api.utils.AuthTokenProvider;
 import com.api.utils.ConfigManager;
+import com.api.utils.SpecUtil;
 
 import static io.restassured.RestAssured.*;
 import io.restassured.response.ValidatableResponse;
@@ -16,17 +17,12 @@ public class MasterAPITest {
 	@Test
 	public void MasterAPITest() throws IOException {
 		ValidatableResponse response= given()
-		.baseUri(ConfigManager.getproperty("BASE_URI"))
-		.and()
-		.contentType("")
-		.header("Authorization",AuthTokenProvider.getToken(Role.FD))
+		.spec(SpecUtil.requestSpecwithAuth(Role.FD))
 		.when()
 		.post("master")
 		.then()
-		.log().all()
-		.statusCode(200)
-		.time(Matchers.lessThan(1000L))
-		.body("message", Matchers.equalTo("Success"))
+		.spec(responseSpecification)
+		
 		.body("data",Matchers.hasKey("mst_oem"))
 		 .body("data", Matchers.hasKey("mst_model"))
 		 .body("data.mst_oem.size()", Matchers.greaterThan(0))
@@ -36,15 +32,12 @@ public class MasterAPITest {
 	@Test
 	public void MasterAPITest_invalidtoken() throws IOException {
 		ValidatableResponse response = given()
-			    .baseUri(ConfigManager.getproperty("BASE_URI"))
-			    .and()
-			    .contentType("application/json") // don’t leave it blank
+				.spec(SpecUtil.requestSpec()) // don’t leave it blank
 			    //.header("Authorization", AuthTokenProvider.getToken(Role.FD))
 			.when()
 			    .post("master")
 			.then()
-			    .statusCode(401)
-			    .log().all();
+			 .spec(SpecUtil.responseSpecification_401());
 		
 	}
 }

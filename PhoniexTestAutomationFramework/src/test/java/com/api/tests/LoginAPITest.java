@@ -13,6 +13,7 @@ import org.testng.annotations.Test;
 import com.api.POJO.UserCredentials;
 import com.api.utils.ConfigManager;
 import com.api.utils.ConfigManager2;
+import com.api.utils.SpecUtil;
 
 import io.restassured.http.ContentType;
 
@@ -23,25 +24,13 @@ public class LoginAPITest {
 		UserCredentials usercredentials = new UserCredentials("iamfd","password");
 		
 		given()
-		.baseUri(ConfigManager2.getproperty("BASE_URI"))
-		.and()
-		.contentType(ContentType.JSON)
-		.and()
-		.body(usercredentials)
-		.log().uri()
-		.log().headers()
-		.log().body()
-		.log().method()		
+		.spec(SpecUtil.requestSpec(usercredentials))	
 		.when()
 		.log().all()
 		.post("/login")
 		.then()
-		.statusCode(200)
-		.time(lessThan(1000L))
-		.body("message",equalTo("Success"))
-		.body("data.token",notNullValue())
-		.extract()
-        .path("data.token")
+		.spec(SpecUtil.responseSpecification())
+
        ;
 		
 		
