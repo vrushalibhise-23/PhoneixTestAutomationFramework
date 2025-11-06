@@ -10,8 +10,8 @@ import java.io.IOException;
 import org.hamcrest.Matchers;
 import org.testng.annotations.Test;
 
-import com.api.POJO.UserCredentials;
 import com.api.constants.Role;
+import com.api.request.model.UserCredentials;
 import com.api.utils.AuthTokenProvider;
 import com.api.utils.ConfigManager;
 import com.api.utils.ConfigManager2;

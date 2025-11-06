@@ -4,8 +4,8 @@ import java.io.IOException;
 
 import org.hamcrest.Matchers;
 
-import com.api.POJO.UserCredentials;
 import com.api.constants.Role;
+import com.api.request.model.UserCredentials;
 
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
