@@ -9,7 +9,14 @@ import java.util.List;
 import org.hamcrest.Matchers;
 import org.testng.annotations.Test;
 
+import com.api.constants.Model;
+import com.api.constants.OEM;
+import com.api.constants.Platform;
+import com.api.constants.Problem;
+import com.api.constants.Product;
 import com.api.constants.Role;
+import com.api.constants.Service_location;
+import com.api.constants.Warranty_Status;
 import com.api.request.model.CreateJobPayload;
 import com.api.request.model.Customer;
 import com.api.request.model.CustomerAddress;
@@ -26,11 +33,12 @@ public class CreateJobAPITest {
 	public void createJobAPITest() throws IOException {
 		 Customer customer = new Customer("Vrushali", "bhise", "23554332222","", "vrushalibhise16@gmail.com", "");
 		  CustomerAddress customeraddress =  new CustomerAddress("CR402", "lakshaddep", "pimple saudagar", "Pune", "pune", "41021", "India", "Maharashtra");
-		  CustomerProduct product = new CustomerProduct(DateTimeUtil.getTimewithDaysAgo(10), "125692553232911", "125692553232911", "125692553232911", DateTimeUtil.getTimewithDaysAgo(10), 3, 3);
-		  Problems problems = new Problems(1, "Battery issue");
+		  CustomerProduct product = new CustomerProduct(DateTimeUtil.getTimewithDaysAgo(10), "125693663131911", "125693663131911", "125693663131911", DateTimeUtil.getTimewithDaysAgo(10), 
+				  Product.NEXUS_2.getCode(), Model.Nexus_2_BLUE.getCode());
+		  Problems problems = new Problems(Problem.OVERHEATING.getcode(), "Battery issue");
 		  List<Problems> problemsList = new ArrayList<Problems>();
 		  problemsList.add(problems);
-		  CreateJobPayload jobpayload = new CreateJobPayload(0, 2, 1, 2, customer, customeraddress, product, problemsList);
+		  CreateJobPayload jobpayload = new CreateJobPayload(Service_location.SERVICE_LOCATION_A.getcode(), Platform.FRONT_DESK.getcode(), Warranty_Status.IN_WARRANTY.getcode(), OEM.GOOGLE.getcode(), customer, customeraddress, product, problemsList);
 		  
 		  
 	    given()
