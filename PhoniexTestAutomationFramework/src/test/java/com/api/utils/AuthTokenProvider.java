@@ -6,8 +6,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Properties;
 
-import com.api.POJO.UserCredentials;
 import com.api.constants.Role;
+import com.api.request.model.UserCredentials;
 
 import io.restassured.http.ContentType;
 

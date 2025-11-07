@@ -1,20 +1,20 @@
 package com.api.tests;
 
+import static io.restassured.RestAssured.given;
+import static io.restassured.RestAssured.responseSpecification;
+
 import java.io.IOException;
 
 import org.hamcrest.Matchers;
 import org.testng.annotations.Test;
 
 import com.api.constants.Role;
-import com.api.utils.AuthTokenProvider;
-import com.api.utils.ConfigManager;
 import com.api.utils.SpecUtil;
 
-import static io.restassured.RestAssured.*;
 import io.restassured.response.ValidatableResponse;
 
 public class MasterAPITest {
-	@Test
+	@Test(description="Verify if Master API is giving correct response",groups= {"api","smoke","regression"})
 	public void MasterAPITest() throws IOException {
 		ValidatableResponse response= given()
 		.spec(SpecUtil.requestSpecwithAuth(Role.FD))
@@ -29,7 +29,7 @@ public class MasterAPITest {
 		 .body("data.mst_oem.id", Matchers.everyItem(Matchers.notNullValue()));
 		
 	}
-	@Test
+	@Test(description="Verify if Master API test is giving correct status code for invalid token",groups= {"api","smoke","regression","negative"})
 	public void MasterAPITest_invalidtoken() throws IOException {
 		ValidatableResponse response = given()
 				.spec(SpecUtil.requestSpec()) // don’t leave it blank
