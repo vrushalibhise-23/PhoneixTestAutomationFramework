@@ -8,7 +8,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import com.api.request.model.UserCredentials;
-import com.api.utils.SpecUtil;
+import static com.api.utils.SpecUtil.*;
 import com.dataprovider.beans.UserBean;
 
 public class LoginAPIDataDrivenTest {
@@ -18,16 +18,21 @@ public class LoginAPIDataDrivenTest {
 			dataProvider="loginAPIDataProvider")
 	
 	
-	public void loginAPI(UserBean userbean) throws IOException {
-		given()
-		.spec(SpecUtil.requestSpec(userbean))	
-		.when()
-		.log().all()
-		.post("/login")
-		.then()
-		.spec(SpecUtil.responseSpecification())
+	public void loginAPI(UserBean userbean) {
+		try {
+			given()
+			.spec(requestSpec(userbean))	
+			.when()
+			.log().all()
+			.post("/login")
+			.then()
+			.spec(responseSpecification())
 
-       ;
+      ;
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		
 		
