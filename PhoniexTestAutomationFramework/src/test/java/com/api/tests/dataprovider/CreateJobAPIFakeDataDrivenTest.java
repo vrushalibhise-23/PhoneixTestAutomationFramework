@@ -17,7 +17,7 @@ public class CreateJobAPIFakeDataDrivenTest {
 
   
 	@Test(description="Verify if Create Job  API is giving correct response",groups= 
-		{"api","smoke","regression"},dataProviderClass=com.dataprovider.DataProviderUtils.class,dataProvider="CreateJobFakerAPIDataProvider")
+		{"api","smoke","regression","faker"},dataProviderClass=com.dataprovider.DataProviderUtils.class,dataProvider="CreateJobFakerAPIDataProvider")
 	public void createJobAPITest(CreateJobPayload jobpayload) throws IOException {
 		
 		  
