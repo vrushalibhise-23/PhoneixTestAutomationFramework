@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="Phoniex inwarraty flow data driven test" parallel="none">
+
+    <test name="Inwarranty flow nwarraty flow data driven test">
+        <classes>
+            <class name="com.api.tests.dataprovider.LoginAPIDataDrivenTest"/>
+            <class name="com.api.tests.dataprovider.CreateJobAPIFakeDataDrivenTest"/>
+            <class name="com.api.tests.dataprovider.CreateJobAPIDataDrivenTest"/>
+        </classes>
+    </test>
+</suite>

@@ -13,11 +13,11 @@ import com.api.utils.SpecUtil;
 
 import io.restassured.module.jsv.JsonSchemaValidator;
 
-public class CreateJobAPIDataDrivenTest {
+public class CreateJobAPIFakeDataDrivenTest {
 
   
 	@Test(description="Verify if Create Job  API is giving correct response",groups= 
-		{"api","smoke","regression","csv"},dataProviderClass=com.dataprovider.DataProviderUtils.class,dataProvider="CreateJobAPIDataProvider")
+		{"api","smoke","regression","faker"},dataProviderClass=com.dataprovider.DataProviderUtils.class,dataProvider="CreateJobFakerAPIDataProvider")
 	public void createJobAPITest(CreateJobPayload jobpayload) throws IOException {
 		
 		  
@@ -30,7 +30,7 @@ public class CreateJobAPIDataDrivenTest {
 	    .spec(SpecUtil.responseSpecification())
 	    .body("message", Matchers.equalTo("Job created successfully. "))
 	    .body("data.mst_service_location_id", Matchers.equalTo(1))
-	    .body("data.job_number", Matchers.startsWith("JOB_"))
-	    .body(JsonSchemaValidator.matchesJsonSchemaInClasspath("ResponseSchema/CreateJobAPISchema.json"));
+	    .body("data.job_number", Matchers.startsWith("JOB_"));
+	    
 	}
 }
