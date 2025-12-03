@@ -1,0 +1,80 @@
+[
+    {
+        "mst_service_location_id": 0,
+        "mst_platform_id": 2,
+        "mst_warrenty_status_id": 1,
+        "mst_oem_id": 2,
+        "customer": {
+            "first_name": "amol",
+            "last_name": "tambe",
+            "mobile_number": "3445554332",
+            "mobile_number_alt": "467643256788655",
+            "email_id": "vru@gmail.com",
+            "email_id_alt": ""
+        },
+        "customer_address": {
+            "flat_number": "cr-192",
+            "apartment_name": "lakshadeep",
+            "street_name": "kunal icon road",
+            "landmark": "near mall",
+            "area": "Saudagar",
+            "pincode": "411021",
+            "country": "India",
+            "state": "Maharashtra"
+        },
+        "customer_product": {
+            "dop": "2025-07-31T18:30:00.000Z",
+            "serial_number": "192334047633827",
+            "imei1": "192334047633827",
+            "imei2": "192334047633827",
+            "popurl": "2025-07-31T18:30:00.000Z",
+            "product_id": 3,
+            "mst_model_id": 3
+        },
+        "problems": [
+            {
+                "id": 1,
+                "remark": "Slow"
+            }
+        ]
+    },
+    {
+        "mst_service_location_id": 0,
+        "mst_platform_id": 2,
+        "mst_warrenty_status_id": 1,
+        "mst_oem_id": 2,
+        "customer": {
+            "first_name": "vrushali",
+            "last_name": "bhise",
+            "mobile_number": "3445554332",
+            "mobile_number_alt": "467643256788655",
+            "email_id": "vru@gmail.com",
+            "email_id_alt": ""
+        },
+        "customer_address": {
+            "flat_number": "cr-192",
+            "apartment_name": "lakshadeep",
+            "street_name": "kunal icon road",
+            "landmark": "near mall",
+            "area": "Saudagar",
+            "pincode": "411021",
+            "country": "India",
+            "state": "Maharashtra"
+        },
+        "customer_product": {
+            "dop": "2025-07-31T18:30:00.000Z",
+            "serial_number": "192334147633827",
+            "imei1": "192334147633827",
+            "imei2": "192334147633827",
+            "popurl": "2025-07-31T18:30:00.000Z",
+            "product_id": 3,
+            "mst_model_id": 3
+        },
+        "problems": [
+            {
+                "id": 1,
+                "remark": "Slow"
+            }
+        ]
+    }
+]
