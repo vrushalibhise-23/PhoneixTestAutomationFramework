@@ -67,10 +67,10 @@ public class DataProviderUtils {
 	}
 	
 	
-	@DataProvider(name="LoginAPIExcelDataProvider",parallel=true)
-	public static Iterator<UserBean> loginAPIExcelDataProvider() throws IOException {
-		return ExcelReaderUtil2.loadTestData("LoginTestData",UserBean.class);
-	}
+//	@DataProvider(name="LoginAPIExcelDataProvider",parallel=true)
+//	public static Iterator<UserBean> loginAPIExcelDataProvider() throws IOException {
+//		return ExcelReaderUtil2.loadTestData("LoginTestData",UserBean.class);
+//	}
 	
 
 }

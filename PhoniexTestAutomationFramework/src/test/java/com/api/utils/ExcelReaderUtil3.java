@@ -18,21 +18,14 @@ import com.dataprovider.beans.CreateJobBean;
 import com.dataprovider.beans.UserBean;
 import com.poiji.bind.Poiji;
 
-public class ExcelReaderUtil2 {
+public class ExcelReaderUtil3 {
 
-	public static Iterator<CreateJobBean> loadTestData(String xlsxFile,String sheetname,Class<CreateJobBean> class1) throws IOException {
+	public static void main(String[] args) throws IOException {
+		Iterator<CreateJobBean> iterator =ExcelReaderUtil2.loadTestData("testData/PhoneixTestData.xlsx", "CreateJobTestData",CreateJobBean.class);
 		
-		InputStream is = Thread.currentThread().getContextClassLoader().
-				getResourceAsStream("testData/PhoneixTestData.xlsx");
-	
-         XSSFWorkbook workbook = new XSSFWorkbook(is);
-         
-        XSSFSheet mysheet = workbook.getSheet(sheetname);
-        
-      List<CreateJobBean> datalist= Poiji.fromExcel(mysheet, CreateJobBean.class);
-	 return datalist.iterator();
+		while(iterator.hasNext()) {
+			System.out.println(iterator.next());
+		}
         
 	}
-
-	
 }
