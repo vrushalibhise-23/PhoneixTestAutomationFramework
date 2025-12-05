@@ -18,10 +18,10 @@ public class LoginAPIExcelDataDrivenTest {
 			dataProvider="LoginAPIExcelDataProvider")
 	
 	
-	public void loginAPI(UserCredentials usercredentials) {
+	public void loginAPI(UserBean userbean) {
 		try {
 			given()
-			.spec(requestSpec(usercredentials))	
+			.spec(requestSpec(userbean))	
 			.when()
 			.log().all()
 			.post("/login")
