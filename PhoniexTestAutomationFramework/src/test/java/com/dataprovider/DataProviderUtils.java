@@ -1,5 +1,6 @@
 package com.dataprovider;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -10,6 +11,7 @@ import com.api.request.model.CreateJobPayload;
 import com.api.request.model.UserCredentials;
 import com.api.utils.CSVReadUtility;
 import com.api.utils.CreateJobBeanMapper;
+import com.api.utils.ExcelReaderUtil2;
 import com.api.utils.FakerDataGenerator;
 import com.api.utils.JSONReaderUtil;
 import com.dataprovider.beans.CreateJobBean;
@@ -63,5 +65,12 @@ public class DataProviderUtils {
 	public static Iterator<CreateJobPayload> CreateJobAPIJSONDataProvider() {
 		return JSONReaderUtil.loadJson("testData/CreateJobAPIData.json",CreateJobPayload[].class);
 	}
+	
+	
+	@DataProvider(name="LoginAPIExcelDataProvider",parallel=true)
+	public static Iterator<UserCredentials> loginAPIExcelDataProvider() throws IOException {
+		return ExcelReaderUtil2.loadTestData();
+	}
+	
 
 }
