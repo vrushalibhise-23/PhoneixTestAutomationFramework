@@ -39,6 +39,8 @@ public class HikariCPDemo {
                 		    rs.getString("mobile_number")
                 		);
                 }
+                ds.close();
 	}
+	
 
 }
