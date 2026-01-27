@@ -54,7 +54,7 @@ public class ConfigManager2 {
 	
 	
 	
-	return prop.getProperty("BASE_URI");
+		 return prop.getProperty(key);
 	
 	
 	
