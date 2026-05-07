@@ -8,14 +8,14 @@ import org.testng.annotations.Test;
 import com.api.constants.Role;
 import static com.api.utils.SpecUtil.*;
 
-import io.restassured.RestAssured;
+import static io.restassured.RestAssured.*;
 
 
 public class CountAPITest {
 	@Test(description="Verify if Count API is giving correct response",groups= {"api","smoke","regression"})
 	public void CountAPI() throws IOException {
 		
-		RestAssured.given()
+		given()
 		.spec(requestSpecwithAuth(Role.FD))
 		.when()
 		.get("/dashboard/count")
@@ -26,12 +26,13 @@ public class CountAPITest {
 		.body("data.size()", Matchers.equalTo(3))
 		.body("data.count", Matchers.everyItem(Matchers.greaterThanOrEqualTo(0)));
 		//.body(JsonSchemaValidator.matchesJsonSchemaInClasspath("ResponseSchema/CountAPISchema.json"));
+		
 		}
 	
 	@Test(description="Verify if Count API is giving correct status code for missing token",groups= {"api","smoke","regression"})
 public void CountAPI_missingAuthToken() throws IOException {
 		
-		RestAssured.given()
+		given()
 		.spec(requestSpec())
 		//.header("Authorization",AuthTokenProvider.getToken(Role.FD))
 		.when()
