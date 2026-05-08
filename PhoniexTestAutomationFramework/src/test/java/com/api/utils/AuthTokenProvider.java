@@ -4,7 +4,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
+import java.util.concurrent.ConcurrentHashMap;
 
 import com.api.constants.Role;
 import com.api.request.model.UserCredentials;
@@ -15,11 +18,19 @@ import static io.restassured.RestAssured.*;
 
 public class AuthTokenProvider {
 	
+	
+	private static Map<Role,String> tokencache= new ConcurrentHashMap<Role,String>();
+	
+	
 	private AuthTokenProvider() {
 		
 	}
 	
 	public static String getToken(Role role) throws IOException {
+		
+		if(tokencache.containsKey(role)) {
+			return tokencache.get(role);
+		}
 		
 		UserCredentials usercredentials=null; 
 		
