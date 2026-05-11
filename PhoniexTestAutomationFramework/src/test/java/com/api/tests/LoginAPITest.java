@@ -8,23 +8,22 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import com.api.request.model.UserCredentials;
+import com.api.services.AuthService;
 import com.api.utils.SpecUtil;
 
 public class LoginAPITest {
-	UserCredentials usercredentials;
+	private UserCredentials usercredentials;
+	private AuthService authservice;
 	
 	@BeforeMethod(description="Create the payload for login api")
 	public void setup() {
 		 usercredentials = new UserCredentials("iamfd","password");
+		  authservice = new AuthService();
 	}
 	
 	@Test(description="Verify if login api is working for FD user", groups= {"smoke","regression","api"})
 	public void loginAPI() throws IOException {
-		given()
-		.spec(SpecUtil.requestSpec(usercredentials))	
-		.when()
-		.log().all()
-		.post("/login")
+		authservice.login(usercredentials)
 		.then()
 		.spec(SpecUtil.responseSpecification())
 
